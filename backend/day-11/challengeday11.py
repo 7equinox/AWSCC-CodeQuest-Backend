@@ -1,4 +1,4 @@
-def append_file(sort_name: list):
+def write_file(sort_name: list):
     # with open("names.txt", "w") as file:
     with open("C:\\Users\\JE\\Desktop\\Program\\AWSCC-CodeQuest-Backend\\backend\\day-11\\names.txt", "w") as file:
         file.writelines(sort_name)
@@ -18,7 +18,7 @@ def read_file() -> list:
 def main():
     name_list = read_file()
     name_list_sort = sort_list(name_list)
-    append_file(name_list_sort)
+    write_file(name_list_sort)
 
 
 main()
