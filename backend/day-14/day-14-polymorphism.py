@@ -46,3 +46,9 @@ class ComplexCalculator(BasicCalculator):
     
 basic = BasicCalculator()
 complex = ComplexCalculator()
+
+# basic = BasicCalculator()
+# print(basic.product([9825, 3412, 5531, 7658]))
+
+complex = ComplexCalculator()
+print(complex.product([9825, 3412, 5531, 7658]))
