@@ -21,14 +21,16 @@ class Book(db.Model):
 # Create the Database and Interact with the Database
 with app.app_context():
     db.create_all() # create the database
-    new_book = Book(title="To Kill a Mockingbird", author="Harper Lee", published_year=1960)
-    # take note that the new_book is an instance of the Book class
-    # and we are adding it to the database using the db.session.add() method
-    # so if there is same book title and author, it will not be added to the database
-    # and it will raise an error
-    db.session.add(new_book)
-    db.session.commit()
-
+    try: 
+        new_book = Book(title="To Kill a Mockingbird", author="Harper Lee", published_year=1960)
+        # take note that the new_book is an instance of the Book class
+        # and we are adding it to the database using the db.session.add() method
+        # so if there is same book title and author, it will not be added to the database
+        # and it will raise an error
+        db.session.add(new_book)
+        db.session.commit()
+    except:
+        print("Book already exists in the database")
 
 # Create a New Route
 @app.route("/") 
