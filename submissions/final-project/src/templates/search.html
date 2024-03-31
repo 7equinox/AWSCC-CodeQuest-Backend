@@ -1,0 +1,37 @@
+<!-- search.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Manager</title>
+</head>
+<body>
+    <h1>Search for a specific input.</h1>
+    <!-- Form for searching a specific website -->
+    <form method="POST">
+        <input type="text" name="search" placeholder="Enter website" required>
+        <input type="submit" value="Search"><br><br>
+    </form>
+    <!-- Form for navigating back to the menu -->
+    <form method="POST">
+        <button type="submit" name="button" value="back">Back to Menu</button>
+    </form>
+    {% if search_clicked %}
+        {% if entries %}
+            <br>
+            <!-- Display the searched website -->
+            <div>Website: {{ search_term }}</div>
+            <!-- Loop through each entry and display the email and password -->
+            {% for entry in entries %}
+                <div style="margin-left: 55px;">[{{ loop.index }}] Email: {{ entry.email }}</div>
+                <div style="margin-left: 78px;">Password: {{ entry.password }}</div>
+                <br>
+            {% endfor %}
+        {% else %}
+            <!-- Display a message when the website is not found -->
+            <h4>Website not found!</h4>
+        {% endif %}
+    {% endif %}
+</body>
+</html>

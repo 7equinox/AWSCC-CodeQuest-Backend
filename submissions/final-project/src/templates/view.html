@@ -1,0 +1,28 @@
+<!-- view.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Manager</title>
+</head>
+<body>
+    <h1>View all inputs.</h1>
+    <!-- Form for navigating back to the main menu -->
+    <form method="POST">
+        <button type="submit">Back to Menu</button>
+        <br><br>
+        <!-- Loop through each entry in the password manager and display them -->
+        {% for entry in entries %}
+            <div>Website: {{ entry.website }}</div>
+            <div style="margin-left: 55px;">Email: {{ entry.email }}</div>
+            <div style="margin-left: 55px;">Password: {{ entry.password }}</div>
+            <br>
+        {% endfor %}
+        <!-- If there are 10 or more entries, display a second back to menu button -->
+        {% if entries|length >= 10 %}
+            <button type="submit">Back to Menu</button>
+        {% endif %}
+    </form>
+</body>
+</html>

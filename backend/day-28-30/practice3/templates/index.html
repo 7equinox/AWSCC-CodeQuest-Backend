@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Password Manager</h1>
+<form method="POST">
+    <input type="text" name="website" placeholder="Website" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="password" name="password" placeholder="Password" required>
+    <button type="submit">Add</button>
+</form>
+<ul>
+    {% for password in passwords %}
+    <li>{{ password.website }} - {{ password.email }} - {{ password.password }}
+        <form method="POST" action="/update/{{ password.id }}">
+            <input type="text" name="website" placeholder="New Website">
+            <input type="email" name="email" placeholder="New Email">
+            <input type="password" name="password" placeholder="New Password">
+            <button type="submit">Update</button>
+        </form>
+        <a href="/delete/{{ password.id }}">Delete</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

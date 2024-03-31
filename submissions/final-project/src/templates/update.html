@@ -1,0 +1,60 @@
+<!-- update.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Manager</title>
+</head>
+<body>
+    <h1>Update a specific input.</h1>
+    <!-- Form for searching a specific website -->
+    <form method="POST">
+        <input type="text" name="search" placeholder="Enter website" required>
+        <input type="submit" name="button" value="Search"><br><br>
+    </form>
+    <!-- Form for navigating back to the menu -->
+    <form method="POST">
+        <button type="submit" name="button" value="back">Back to Menu</button>
+    </form>
+    {% if search_clicked and not update_clicked %}
+        {% if entries %}
+            <!-- Instruction for the user -->
+            <h4>Click the number you want to update:</h4>
+            <!-- Display the searched website -->
+            <div>Website: {{ search_term }}</div>
+            <!-- Form for selecting an entry to update -->
+            <form method="POST">
+                <!-- Loop through each entry and display the email and password -->
+                {% for entry in entries %}
+                    <!-- Button for selecting the entry to update -->
+                    <div style="margin-left: 55px;"><button type="submit" name="button" value="{{ entry.id }}">{{ loop.index }}</button> Email: {{ entry.email }}</div>
+                    <div style="margin-left: 82.5px;">Password: {{ entry.password }}</div>
+                    <br>
+                {% endfor %}
+            </form>
+        {% else %}
+            <!-- Display a message when the website is not found -->
+            <h4>Website not found!</h4>
+        {% endif %}
+    {% endif %}
+    {% if update_clicked %}
+        <h4>Update Entry</h4>
+        <!-- Form for updating an entry -->
+        <form method="POST">
+            <input type="hidden" name="button" value="{{ entry.id if entry else '' }}">
+            <label for="website">Website:</label>
+            <input type="text" id="website" name="website" placeholder="{{ entry.website if entry else '' }}" value="{{ entry.website if entry else '' }}" required><br>
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" placeholder="{{ entry.email if entry else '' }}" value="{{ entry.email if entry else '' }}" required><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Password" value="{{ entry.password if entry else '' }}" required><br>
+            <input type="submit" value="Update">
+        </form>
+        <!-- Form for navigating back to the list -->
+        <form method="POST">
+            <button type="submit" name="button" value="back_to_list">Back to List</button>
+        </form>
+    {% endif %}
+</body>
+</html>
